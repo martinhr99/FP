@@ -327,6 +327,29 @@ void ej6(){
 
 void ej7(){
 
+    int tam_N_f, 
+        tam_N_c;
+    int N[tam_N_f][tam_N_c];
+    for(int i=0; i<tam_N_f; i++){
+        for (int j=0; j<tam_N_c; j++){
+                
+            N[i][j]=rand()%10;
+
+        }
+    } 
+    
+   int tam_M_f, 
+        tam_M_c;
+    int N[tam_M_f][tam_M_c];
+    for(int i=0; i<tam_M_f; i++){
+        for (int j=0; j<tam_M_c; j++){
+                
+            N[i][j]=rand()%10;
+
+        }
+    } 
+    
+     
 
 }
 int main(){
