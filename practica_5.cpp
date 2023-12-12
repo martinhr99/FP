@@ -350,7 +350,80 @@ void ej7(){
     } 
     
      
+}
 
+void ej7(){
+
+    int elemento= INT_MAX,
+        entrada,
+        menor,
+        tam_M_f,
+        tam_M_c,
+        tam_N_f,
+        tam_N_c;
+    bool encontrado;
+
+    tam_N_f=9;
+    tam_N_c=11;
+    tam_M_f=2;
+    tam_M_c=2;
+
+
+
+    int N[tam_N_f][tam_N_c],
+        M [tam_M_f][tam_M_c];
+
+
+    for(int i=0; i<tam_N_f; i++){
+        for (int j=0; j<tam_N_c; j++){
+                
+            N[i][j]=rand()%100;
+
+        }
+    }
+
+    
+ 
+    for(int i=0; i<tam_N_f; i++){
+        for (int j=0; j<tam_N_c; j++){
+                
+            M[i][j]=rand()%100;
+
+        }
+    }
+
+    
+    int j=0;
+    for (int i=0 ; i<tam_N_f-1 && ! encontrado; i++){
+        for(; j<tam_N_c-1 && ! encontrado; j++){
+            
+            if(N[i][j]==M[0][0]){
+                int pos_x=0;
+                int pos_y=0;
+                bool iguales=true;
+                while(iguales){
+                    while(tam_M_c<pos_y && tam_N_c && iguales){
+                        j++;
+                        pos_y++;
+                        if (N[i][j]!=M[pos_x][pos_y]) iguales=false;
+                    }
+
+                    if(pos_x<tam_M_f && i<tam_N_f) pos_x++, i++;
+
+                }
+
+                if(iguales)encontrado=true;
+
+
+            }
+        }
+
+        if(j>=tam_N_c-1) j=0;
+    }
+
+    if(encontrado) cout<<"La Matriz:"<< Imprime_Matriz(M[0], tam_M_c) <<"está contenida en "<<Imprime_Matiz_NC(N[0], tam_N_f, tam_N_c)<<endl ;
+    else cout<<"La Matroz no estáa contenida"<<endl;
+     
 }
 int main(){
     cout<<"Introduzca un número para indicar que ejercicio desea realizar"<<endl;
