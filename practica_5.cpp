@@ -325,72 +325,48 @@ void ej6(){
 
 }
 
-void ej7(){
-
-    int tam_N_f, 
-        tam_N_c;
-    int N[tam_N_f][tam_N_c];
-    for(int i=0; i<tam_N_f; i++){
-        for (int j=0; j<tam_N_c; j++){
-                
-            N[i][j]=rand()%10;
-
-        }
-    } 
-    
-   int tam_M_f, 
-        tam_M_c;
-    int N[tam_M_f][tam_M_c];
-    for(int i=0; i<tam_M_f; i++){
-        for (int j=0; j<tam_M_c; j++){
-                
-            N[i][j]=rand()%10;
-
-        }
-    } 
-    
-     
-}
 
 void ej7(){
 
-    int elemento= INT_MAX,
-        entrada,
-        menor,
-        tam_M_f,
+    int tam_M_f,
         tam_M_c,
         tam_N_f,
         tam_N_c;
     bool encontrado;
 
-    tam_N_f=9;
-    tam_N_c=11;
+    tam_N_f=5;
+    tam_N_c=5;
     tam_M_f=2;
     tam_M_c=2;
 
 
-
-    int N[tam_N_f][tam_N_c],
+/*
+    int N [tam_N_f][tam_N_c],
         M [tam_M_f][tam_M_c];
 
 
     for(int i=0; i<tam_N_f; i++){
         for (int j=0; j<tam_N_c; j++){
                 
-            N[i][j]=rand()%100;
+            N[i][j]=rand()%10;
 
         }
     }
+
 
     
  
-    for(int i=0; i<tam_N_f; i++){
-        for (int j=0; j<tam_N_c; j++){
+    for(int i=0; i<tam_M_f; i++){
+        for (int j=0; j<tam_M_c; j++){
                 
-            M[i][j]=rand()%100;
+            M[i][j]=rand()%10;
 
         }
     }
+*/
+
+   int M[2][2]={{1,1},{1,1}};   
+   int N[5][5]={{0,0,0,0,0},{0,1,1,0,0},{0,2,2,0,0},{0,0,0,0,0},{0,0,0,0,0}};
 
     
     int j=0;
@@ -398,17 +374,23 @@ void ej7(){
         for(; j<tam_N_c-1 && ! encontrado; j++){
             
             if(N[i][j]==M[0][0]){
-                int pos_x=0;
-                int pos_y=0;
-                bool iguales=true;
-                while(iguales){
-                    while(tam_M_c<pos_y && tam_N_c && iguales){
-                        j++;
-                        pos_y++;
-                        if (N[i][j]!=M[pos_x][pos_y]) iguales=false;
-                    }
+                int pos_x_M=0;
+                int pos_y_M=0;
+                int pos_y_N=j;
+                int pos_x_N=i;
+                bool iguales=false;
 
-                    if(pos_x<tam_M_f && i<tam_N_f) pos_x++, i++;
+                while(pos_x_M<tam_M_f && i<tam_N_f){
+
+                    while(pos_y_M<tam_M_c && j<tam_N_c){
+                        pos_y_N++;
+                        pos_y_M++;
+
+                        if (N[i][j]==M[pos_x_M][pos_y_M]) iguales=true;
+                    }
+                    pos_y_N=j;
+                    pos_x_M++;
+                    pos_x_N=i;
 
                 }
 
@@ -421,8 +403,8 @@ void ej7(){
         if(j>=tam_N_c-1) j=0;
     }
 
-    if(encontrado) cout<<"La Matriz:"<< Imprime_Matriz(M[0], tam_M_c) <<"está contenida en "<<Imprime_Matiz_NC(N[0], tam_N_f, tam_N_c)<<endl ;
-    else cout<<"La Matroz no estáa contenida"<<endl;
+    if (encontrado){ cout<<"La Matriz:", Imprime_Matriz(M[0], tam_M_c), cout <<"está contenida en ", Imprime_Matiz_NC(N[0], tam_N_f, tam_N_c);
+    } else cout<<"La Matriz no está contenida"<<endl, Imprime_Matiz_NC(M[0], tam_M_f,tam_M_c), Imprime_Matiz_NC(N[0], tam_N_f, tam_N_c);
      
 }
 int main(){
