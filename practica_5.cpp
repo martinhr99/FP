@@ -334,11 +334,7 @@ void ej7(){
         tam_N_c;
     bool encontrado;
 
-    tam_N_f=5;
-    tam_N_c=5;
-    tam_M_f=2;
-    tam_M_c=2;
-
+   
 
 /*
     int N [tam_N_f][tam_N_c],
@@ -365,32 +361,44 @@ void ej7(){
     }
 */
 
-   int M[2][2]={{1,1},{1,1}};   
-   int N[5][5]={{0,0,0,0,0},{0,1,1,0,0},{0,2,2,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+   int M[2][1]={{1},{1}};   
+   int N[5][5]={{1,0,0,0,0},{0,0,0,0,1},{0,0,0,0,1},{0,0,0,0,0},{0,0,0,0,0}};
+    tam_N_f=5;
+    tam_N_c=5;
+    tam_M_f=2;
+    tam_M_c=1;
 
     
     int j=0;
-    for (int i=0 ; i<tam_N_f-1 && ! encontrado; i++){
-        for(; j<tam_N_c-1 && ! encontrado; j++){
+    for (int i=0 ; i<tam_N_f && ! encontrado; i++){
+        for(; j<tam_N_c && ! encontrado; j++){
             
             if(N[i][j]==M[0][0]){
                 int pos_x_M=0;
                 int pos_y_M=0;
                 int pos_y_N=j;
                 int pos_x_N=i;
-                bool iguales=false;
+                bool iguales=true;
+          
 
-                while(pos_x_M<tam_M_f && i<tam_N_f){
+                while(pos_x_M<tam_M_f && pos_x_N<tam_N_f && iguales){
 
-                    while(pos_y_M<tam_M_c && j<tam_N_c){
+                    while(pos_y_M<tam_M_c && pos_y_N<tam_N_c && iguales){
+                    
+                        if (N[pos_x_N][pos_y_N] != M[pos_x_M][pos_y_M]) iguales=false;
+                       
                         pos_y_N++;
                         pos_y_M++;
-
-                        if (N[i][j]==M[pos_x_M][pos_y_M]) iguales=true;
+                    
                     }
-                    pos_y_N=j;
+
+                    
                     pos_x_M++;
-                    pos_x_N=i;
+                    pos_x_N++;
+
+                    pos_y_M=0;
+                    pos_y_N=j;
+                    
 
                 }
 
@@ -403,7 +411,7 @@ void ej7(){
         if(j>=tam_N_c-1) j=0;
     }
 
-    if (encontrado){ cout<<"La Matriz:", Imprime_Matriz(M[0], tam_M_c), cout <<"está contenida en ", Imprime_Matiz_NC(N[0], tam_N_f, tam_N_c);
+    if (encontrado){ cout<<"La Matriz:", Imprime_Matiz_NC(M[0], tam_M_f,tam_M_c), cout <<"está contenida en ", Imprime_Matiz_NC(N[0], tam_N_f, tam_N_c);
     } else cout<<"La Matriz no está contenida"<<endl, Imprime_Matiz_NC(M[0], tam_M_f,tam_M_c), Imprime_Matiz_NC(N[0], tam_N_f, tam_N_c);
      
 }
