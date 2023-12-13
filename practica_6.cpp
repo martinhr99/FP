@@ -88,7 +88,7 @@ void Eliminar_Elemento(){
     cout<<"Indique la posición donde desea eliminar el elemento"<<endl;
     cin>>pos;
 
-    for(int i=pos; i<TAM_LOG-1; i++){
+    for(int i=pos; i<TAM_LOG-1; i--){
         vec[i]=vec[i+1];
     }
     TAM_LOG--;
@@ -133,9 +133,9 @@ int main(){
   
     int entrada;
     char caracter;
-
+    cout<<"Bienvenido a la práctica 6."<<endl<<endl;
     do{
-    cout<<"Bienvenido a la práctica 6. Introduza la función que desea empelar, en caso de no saber introduzca 1 par desplegar el menu de opciones"<<endl;
+    cout<<"Introduza la función que desea empelar, en caso de no saber introduzca 1 par desplegar el menu de opciones"<<endl<<endl;
     cin>>entrada;
     switch (entrada){
 
@@ -170,13 +170,33 @@ int main(){
                 Borrar_Vector();
                 break;
         }
-            
+        case 2:
+                Imprime_Vector();
+                break; 
+            case 3:
+                Rellena_Vector();
+                break;
+            case 4:
+                Insertar_Elemento();
+                break;
+            case 5:
+                Eliminar_Elemento();
+                break;
+            case 6:
+                Ordenar_Vector();
+                break;
+            case 7:
+                Consultar_Tamaño();
+                break;
+            case 8:
+                Borrar_Vector();
+                break;    
         
         default:
             break;
     }
 
-    cout<<"¿Desea realizar alguna cosa más? (y/n)"<<endl;
+    cout<<"¿Desea realizar alguna cosa más? (y/n)"<<endl<<endl;
 
     cin>>caracter;
 
