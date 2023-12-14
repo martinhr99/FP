@@ -72,7 +72,7 @@ void Insertar_Elemento(){
             TAM_LOG++;
             vec[TAM_LOG]=n;
         }else{
-            for(int i=TAM_LOG; i>pos; i++){
+            for(int i=TAM_LOG; i>pos; i--){
                 vec[i+1]=vec[i];
             }
             vec[pos]=n;
@@ -88,7 +88,7 @@ void Eliminar_Elemento(){
     cout<<"Indique la posición donde desea eliminar el elemento"<<endl;
     cin>>pos;
 
-    for(int i=pos; i<TAM_LOG-1; i--){
+    for(int i=pos; i<TAM_LOG-1; i++){
         vec[i]=vec[i+1];
     }
     TAM_LOG--;
@@ -135,7 +135,7 @@ int main(){
     char caracter;
     cout<<"Bienvenido a la práctica 6."<<endl<<endl;
     do{
-    cout<<"Introduza la función que desea empelar, en caso de no saber introduzca 1 par desplegar el menu de opciones"<<endl<<endl;
+    cout<<"Introduza la función que desea emplear"<<endl<<"Introduzca 1 para desplegar el menu de opcione"<<endl<<endl;
     cin>>entrada;
     switch (entrada){
 
