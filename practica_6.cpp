@@ -5,9 +5,7 @@
 
 
 //VARIABLES GLOBALES 
-const int TAM_MAX=100;
-int TAM_LOG=0;
-int vec[TAM_MAX];
+
 
 
 
@@ -25,15 +23,15 @@ void Imprime_Menu(){
     cout<<"Para borrar todo el vector introduzca                                     8"<<endl;
 
 }
-void Imprime_Vector(){
+void Imprime_Vector(const int vec[], const int &tl){
     cout<<endl;
-    for (int i=0; i<TAM_LOG;i++){
+    for (int i=0; i<tl;i++){
         cout<<vec[i]<<"  ";
     }
     cout<<endl;
 }
 
-void Rellena_Vector(){
+void Rellena_Vector(int vec[], int &tl){
     int N;
     cout<<"Introduzca el numero de elementos a rellenar el vector"<<endl;
     cin>>N;
@@ -43,13 +41,14 @@ void Rellena_Vector(){
         }
     }
 
-    TAM_LOG=N;
-    for(int i=0; i<TAM_LOG; i++){
+    ;
+    for(int i=0; i<N; i++){
         vec[i]=rand() % 100;
     }
+    tl=N;
 }
 
-void Insertar_Elemento(){
+void Insertar_Elemento(int vec[], int &tl){
     int n,
         pos;
 
@@ -68,39 +67,41 @@ void Insertar_Elemento(){
     if(pos==100){
         vec[pos]=n;
     }else{
-        if(pos>TAM_LOG){
-            TAM_LOG++;
-            vec[TAM_LOG]=n;
+        if(pos>tl){
+            tl=pos;
+            vec[tl-1]=n;
         }else{
-            for(int i=TAM_LOG; i>pos; i--){
+           
+            for(int i=tl; i>=pos; i--){
                 vec[i+1]=vec[i];
             }
             vec[pos]=n;
-            TAM_LOG++;
+            tl++;
         }
 
     }
+    cout<<tl<<endl;
 
 }
 
-void Eliminar_Elemento(){
+void Eliminar_Elemento(int vec[], int &tl){
     int pos;
     cout<<"Indique la posición donde desea eliminar el elemento"<<endl;
     cin>>pos;
 
-    for(int i=pos; i<TAM_LOG-1; i++){
+    for(int i=pos; i<tl-1; i++){
         vec[i]=vec[i+1];
     }
-    TAM_LOG--;
+    tl--;
 }
 
-void Ordenar_Vector(){
+void Ordenar_Vector(int vec[], const int &tl){
 
     bool flag = false;
     int i = 1, aux;
-    while(i < TAM_LOG && !flag) {
+    while(i < tl && !flag) {
         flag = true;
-        for (int j = 0; j < TAM_LOG - i; j++) {
+        for (int j = 0; j < tl - i; j++) {
             if (vec[j] > vec[j + 1]) {
             aux = vec[j];
             vec[j] = vec[j + 1];
@@ -111,25 +112,28 @@ void Ordenar_Vector(){
         i++;
     }
 
-    Imprime_Vector();
+    Imprime_Vector(vec, tl );
 
 }
 
-void Consultar_Tamaño(){
+void Consultar_Tamaño(const int &tl){
 
-    cout<<"El tamaño del vector es: " <<TAM_LOG<<endl;
+    cout<<"El tamaño del vector es: " <<tl<<endl;
 
 }
 
-void Borrar_Vector(){
+void Borrar_Vector(int &tl){
 
-    TAM_LOG=0;
+    tl=0;
 
 }
 
 
 int main(){
-
+    
+    const int TAM_MAX=100;
+    int TAM_LOG=0;
+    int vec[TAM_MAX];
   
     int entrada;
     char caracter;
@@ -149,47 +153,47 @@ int main(){
         {
         
             case 2:
-                Imprime_Vector();
+                Imprime_Vector(vec, TAM_LOG);
                 break; 
             case 3:
-                Rellena_Vector();
+                Rellena_Vector(vec, TAM_LOG);
                 break;
             case 4:
-                Insertar_Elemento();
+                Insertar_Elemento(vec, TAM_LOG);
                 break;
             case 5:
-                Eliminar_Elemento();
+                Eliminar_Elemento(vec, TAM_LOG);
                 break;
             case 6:
-                Ordenar_Vector();
+                Ordenar_Vector(vec, TAM_LOG);
                 break;
             case 7:
-                Consultar_Tamaño();
+                Consultar_Tamaño(TAM_LOG);
                 break;
             case 8:
-                Borrar_Vector();
+                Borrar_Vector(TAM_LOG);
                 break;
         }
         case 2:
-                Imprime_Vector();
+                Imprime_Vector(vec, TAM_LOG);
                 break; 
             case 3:
-                Rellena_Vector();
+                Rellena_Vector(vec, TAM_LOG);
                 break;
             case 4:
-                Insertar_Elemento();
+                Insertar_Elemento(vec, TAM_LOG);
                 break;
             case 5:
-                Eliminar_Elemento();
+                Eliminar_Elemento(vec, TAM_LOG);
                 break;
             case 6:
-                Ordenar_Vector();
+                Ordenar_Vector(vec, TAM_LOG);
                 break;
             case 7:
-                Consultar_Tamaño();
+                Consultar_Tamaño(TAM_LOG);
                 break;
             case 8:
-                Borrar_Vector();
+                Borrar_Vector(TAM_LOG);
                 break;    
         
         default:
